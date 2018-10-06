@@ -1,13 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.*;
 
 
 @Autonomous(name="Encoder: Drive Test", group = "Autonomous")
-public class AutonomousTest extends LinearOpMode {
+public class AutonomousTest {
     Robot robot = new Robot();
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -24,45 +23,15 @@ public class AutonomousTest extends LinearOpMode {
     public void runOpMode()
     {
         robot.init(hardwareMap);
-
-        telemetry.addData("Status", "Resetting Encoders");    //
-        telemetry.update();
-
-        robot.driveFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.driveFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.driveBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.driveBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        robot.driveFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.driveFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.driveBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.driveBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        telemetry.addData("Path0",  "Starting at %7d :%7d :%7d :%7d",
-                robot.driveFrontLeft.getCurrentPosition(),
-                robot.driveFrontRight.getCurrentPosition(),
-                robot.driveBackLeft.getCurrentPosition(),
-                robot.driveBackRight.getCurrentPosition());
-        telemetry.update();
-
-        waitForStart();
-
-        encoderDrive(DRIVE_SPEED,12,5);
-
-        telemetry.addData("Path","Complete");
-        telemetry.update();
-
     }
 
     public void encoderDrive(double speed, double distance, double timeout)
     {
-        int newFrontLeftTarget;
-        int newFrontRightTarget;
-        int newBackLeftTarget;
-        int newBackRightTarget;
+        int newTarget;
 
         if (opModeIsActive())
         {
+<<<<<<< HEAD
             newFrontLeftTarget = robot.driveFrontRight.getCurrentPosition() + (int)(distance * COUNTS_PER_INCH);
             newFrontRightTarget = robot.driveFrontRight.getCurrentPosition() + (int)(distance * COUNTS_PER_INCH);
             newBackLeftTarget = robot.driveFrontRight.getCurrentPosition() + (int)(distance * COUNTS_PER_INCH);
@@ -107,6 +76,8 @@ public class AutonomousTest extends LinearOpMode {
             robot.driveFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.driveBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.driveBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+=======
+>>>>>>> acc81bea11fd0861d85892bc3fb87ada6fa52c39
 
         }
     }
