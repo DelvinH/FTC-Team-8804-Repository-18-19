@@ -1,8 +1,11 @@
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.*;
 
 public class DriveTrain
 {
+    Robot Robot = new Robot();
+
     private DcMotor driveFrontRight = Robot.driveFrontRight;
     private DcMotor driveFrontLeft = Robot.driveFrontLeft;
     private DcMotor driveBackRight = Robot.driveBackRight;

@@ -7,7 +7,7 @@ public class Robot
 {
     /*Motors*/
     //Drive
-<<<<<<< HEAD
+
     public DcMotor driveFrontRight;
     public DcMotor driveFrontLeft;
     public DcMotor driveBackRight;
@@ -19,7 +19,7 @@ public class Robot
      */
 
     //Intake
-    public DcMotor intakeMotor;
+    /*public DcMotor intakeMotor;
     public DcMotor intakeRoller;
     public Servo intakeBucket;
 
@@ -28,31 +28,9 @@ public class Robot
 
     //Scorer
     public DcMotor scorerMotor;
-=======
-    DcMotor driveFrontRight;
-    DcMotor driveFrontLeft;
-    DcMotor driveBackRight;
-    DcMotor driveBackLeft;
-
-    /*private Encoder encoderRight;
-    private Encoder encoderLeft;
-    private Encoder encoderStrafe
-     */
-
-    //Intake
-    DcMotor intakeMotor;
-    DcMotor intakeRoller;
-    Servo intakeBucket;
-
-    //Lifter
-    DcMotor lifterMotor;
-
-    //Scorer
-    DcMotor scorerMotor;
->>>>>>> e37aff332d1dc412a7bcb71055c65a3fd27fd0e4
 
     //Marker
-    public Servo markerPusher;
+    public Servo markerPusher;*/
 
     void init(HardwareMap hardwareMap)
     {
@@ -62,8 +40,13 @@ public class Robot
         driveBackRight = hardwareMap.get(DcMotor.class, "dbr");
         driveBackLeft = hardwareMap.get(DcMotor.class, "dbl");
 
+        driveFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        driveFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        driveBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        driveBackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         //Intake
-        intakeMotor = hardwareMap.get(DcMotor.class, "im");
+        /*intakeMotor = hardwareMap.get(DcMotor.class, "im");
         intakeRoller = hardwareMap.get(DcMotor.class, "ir");
         intakeBucket = hardwareMap.get(Servo.class, "ib");
 
@@ -74,6 +57,6 @@ public class Robot
         scorerMotor = hardwareMap.get(DcMotor.class, "sm");
 
         //Marker
-        markerPusher = hardwareMap.get(Servo.class, "mp");
+        markerPusher = hardwareMap.get(Servo.class, "mp");*/
     }
 }
