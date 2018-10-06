@@ -31,7 +31,7 @@ public class Robot
     //Marker
     private Servo markerPusher;
 
-    void initialize(HardwareMap hardwareMap)
+    void init(HardwareMap hardwareMap)
     {
         //Drive
         driveFrontRight = hardwareMap.get(DcMotor.class, "dfr");
