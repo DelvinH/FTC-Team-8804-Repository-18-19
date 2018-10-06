@@ -7,6 +7,7 @@ public class Robot
 {
     /*Motors*/
     //Drive
+<<<<<<< HEAD
     public DcMotor driveFrontRight;
     public DcMotor driveFrontLeft;
     public DcMotor driveBackRight;
@@ -27,6 +28,28 @@ public class Robot
 
     //Scorer
     public DcMotor scorerMotor;
+=======
+    DcMotor driveFrontRight;
+    DcMotor driveFrontLeft;
+    DcMotor driveBackRight;
+    DcMotor driveBackLeft;
+
+    /*private Encoder encoderRight;
+    private Encoder encoderLeft;
+    private Encoder encoderStrafe
+     */
+
+    //Intake
+    DcMotor intakeMotor;
+    DcMotor intakeRoller;
+    Servo intakeBucket;
+
+    //Lifter
+    DcMotor lifterMotor;
+
+    //Scorer
+    DcMotor scorerMotor;
+>>>>>>> e37aff332d1dc412a7bcb71055c65a3fd27fd0e4
 
     //Marker
     public Servo markerPusher;
