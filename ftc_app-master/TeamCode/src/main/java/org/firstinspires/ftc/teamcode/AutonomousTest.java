@@ -18,7 +18,7 @@ public class AutonomousTest extends LinearOpMode {
     static final double COUNTS_PER_INCH         = (COUNT_PER_MOTOR_REV * GEAR_REDUCTION /
                                                     WHEEL_DIAMETER_INCHES / Math.PI);
 
-    static final double DRIVE_SPEED             = 0.01;
+    static final double DRIVE_SPEED             = 0.3;
     static final double TURN_SPEED              = 0.5;
 
     @Override
@@ -45,7 +45,7 @@ public class AutonomousTest extends LinearOpMode {
 
         waitForStart();
 
-        encoderDrive(DRIVE_SPEED, 12, 20);
+        encoderDrive(DRIVE_SPEED, 60, 10);
     }
 
     public void encoderDrive(double speed, double distance, double timeout)
@@ -70,13 +70,11 @@ public class AutonomousTest extends LinearOpMode {
             robot.driveBackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.driveBackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            telemetry.addData("moo", "moo");
-            telemetry.update();
             runtime.reset();
-            robot.driveFrontLeft.setPower(Math.abs(speed));
-            robot.driveFrontRight.setPower(Math.abs(speed));
-            robot.driveBackLeft.setPower(Math.abs(speed));
-            robot.driveBackRight.setPower(Math.abs(speed));
+            robot.driveFrontLeft.setPower(Math.abs(speed)*.9);
+            robot.driveFrontRight.setPower(Math.abs(speed)*1.1);
+            robot.driveBackLeft.setPower(Math.abs(speed)*.9);
+            robot.driveBackRight.setPower(Math.abs(speed)*1.1);
 
             while (opModeIsActive() && runtime.seconds() < timeout &&
                     robot.driveFrontLeft.isBusy() && robot.driveFrontRight.isBusy() &&
