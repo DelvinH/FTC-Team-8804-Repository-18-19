@@ -7,29 +7,29 @@ public class Robot
 {
     /*Motors*/
     //Drive
-    private DcMotor driveFrontRight;
-    private DcMotor driveFrontLeft;
-    private DcMotor driveBackRight;
-    private DcMotor driveBackLeft;
+    public DcMotor driveFrontRight;
+    public DcMotor driveFrontLeft;
+    public DcMotor driveBackRight;
+    public DcMotor driveBackLeft;
 
-    /*private Encoder encoderRight;
-    private Encoder encoderLeft;
-    private Encoder encoderStrafe
+    /*public Encoder encoderRight;
+    public Encoder encoderLeft;
+    public Encoder encoderStrafe
      */
 
     //Intake
-    private DcMotor intakeMotor;
-    private DcMotor intakeRoller;
-    private Servo intakeBucket;
+    public DcMotor intakeMotor;
+    public DcMotor intakeRoller;
+    public Servo intakeBucket;
 
     //Lifter
-    private DcMotor lifterMotor;
+    public DcMotor lifterMotor;
 
     //Scorer
-    private DcMotor scorerMotor;
+    public DcMotor scorerMotor;
 
     //Marker
-    private Servo markerPusher;
+    public Servo markerPusher;
 
     void init(HardwareMap hardwareMap)
     {
