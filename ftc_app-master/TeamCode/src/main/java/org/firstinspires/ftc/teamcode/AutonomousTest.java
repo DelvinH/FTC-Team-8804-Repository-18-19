@@ -70,6 +70,8 @@ public class AutonomousTest extends LinearOpMode {
             robot.driveBackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.driveBackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+            telemetry.addData("moo", "moo");
+            telemetry.update();
             runtime.reset();
             robot.driveFrontLeft.setPower(Math.abs(speed));
             robot.driveFrontRight.setPower(Math.abs(speed));
