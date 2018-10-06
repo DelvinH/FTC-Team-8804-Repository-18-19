@@ -7,10 +7,10 @@ public class Robot
 {
     /*Motors*/
     //Drive
-    private DcMotor driveFrontRight;
-    private DcMotor driveFrontLeft;
-    private DcMotor driveBackRight;
-    private DcMotor driveBackLeft;
+    DcMotor driveFrontRight;
+    DcMotor driveFrontLeft;
+    DcMotor driveBackRight;
+    DcMotor driveBackLeft;
 
     /*private Encoder encoderRight;
     private Encoder encoderLeft;
@@ -18,15 +18,15 @@ public class Robot
      */
 
     //Intake
-    private DcMotor intakeMotor;
-    private DcMotor intakeRoller;
-    private Servo intakeBucket;
+    DcMotor intakeMotor;
+    DcMotor intakeRoller;
+    Servo intakeBucket;
 
     //Lifter
-    private DcMotor lifterMotor;
+    DcMotor lifterMotor;
 
     //Scorer
-    private DcMotor scorerMotor;
+    DcMotor scorerMotor;
 
     //Marker
     private Servo markerPusher;
