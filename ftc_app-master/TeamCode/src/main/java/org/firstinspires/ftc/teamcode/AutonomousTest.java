@@ -88,8 +88,6 @@ public class AutonomousTest extends LinearOpMode {
                     robot.driveFrontLeft.isBusy() && robot.driveFrontRight.isBusy() &&
                     robot.driveBackLeft.isBusy() && robot.driveBackRight.isBusy())
             {
-                telemetry.addData("Path1",  "Running to %7d :%7d", newLeftTarget,  newRightTarget);
-                telemetry.addData("Path2",  "Running at %7d :%7d:%7d :%7d\",
                 telemetry.addData("Path1",  "Running to %7d :%7d %7d :%7d", newFrontLeftTarget,
                                 newFrontRightTarget, newBackLeftTarget, newBackRightTarget);
                 telemetry.addData("Path2",  "Running at %7d :%7d :%7d :%7d",
