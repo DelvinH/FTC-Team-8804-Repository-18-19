@@ -4,21 +4,22 @@ import com.qualcomm.robotcore.hardware.*;
 
 public class DriveTrain extends Robot
 {
-    private DcMotor driveFrontRight;
-    private DcMotor driveFrontLeft;
-    private DcMotor driveBackRight;
-    private DcMotor driveBackLeft;
-
     private static double MAX_DRIVE_SPEED  = 1.0;
     private static double MAX_TURN_SPEED   = 1.0;
     private static double MAX_STRAFE_SPEED = 0.3;
 
-    void initialize(DcMotor driveFrontRight, DcMotor driveFrontLeft, DcMotor driveBackRight, DcMotor driveBackLeft)
+
+    void initialize()
     {
-        this.driveFrontRight = driveFrontRight;
-        this.driveFrontLeft = driveFrontLeft;
-        this.driveBackRight = driveBackRight;
-        this.driveBackLeft = driveBackLeft;
+        driveFrontRight = hardwareMap.get(DcMotor.class, "dfr");
+        driveFrontLeft = hardwareMap.get(DcMotor.class, "dfl");
+        driveBackRight = hardwareMap.get(DcMotor.class, "dbr");
+        driveBackLeft = hardwareMap.get(DcMotor.class, "dbl");
+
+        driveFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        driveFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        driveBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        driveBackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     void Move(double xPower,double yPower,double strafePower)

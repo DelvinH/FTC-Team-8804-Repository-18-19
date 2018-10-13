@@ -2,13 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.*;
 
-public class Intake
+public class Intake extends Robot
 {
-    private DcMotor intakeExtender;
-    private DcMotor intakeLifter;
-    private DcMotor intakeRoller;
-    private Servo intakeBucket;
-
     private static double MAX_EXTENDER_SPEED = 0.5;
     private static double MAX_LIFTER_SPEED   = 0.3;
     private static double MAX_ROLLER_SPEED   = 1.0;
@@ -17,12 +12,16 @@ public class Intake
     private boolean toggleHelper = true;
     private boolean servoStatus = true;//true = down
 
-    void initialize(DcMotor intakeExtender, DcMotor intakeLifter, DcMotor intakeRoller, Servo intakeBucket)
+    void initialize()
     {
-        this.intakeExtender = intakeExtender;
-        this.intakeLifter = intakeLifter;
-        this.intakeRoller = intakeRoller;
-        this.intakeBucket = intakeBucket;
+        intakeExtender = hardwareMap.get(DcMotor.class, "ie");
+        intakeLifter = hardwareMap.get(DcMotor.class, "il");
+        intakeRoller = hardwareMap.get(DcMotor.class, "ir");
+        intakeBucket = hardwareMap.get(Servo.class, "ib");
+
+        intakeExtender.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intakeLifter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intakeRoller.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     void Extender (boolean in, boolean out)
@@ -31,19 +30,19 @@ public class Intake
         {
             intakeExtender.setPower(MAX_EXTENDER_SPEED);
         } else if (out) {
-            intakeExtender.setPower(MAX_EXTENDER_SPEED);
+            intakeExtender.setPower(-MAX_EXTENDER_SPEED);
         } else {
             intakeExtender.setPower(0);
         }
     }
 
-    void Lifter (boolean in, boolean out)
+    void Lifter (boolean up, boolean down)//cheese coroutine
     {
-        if (in)
+        if (up)
         {
             intakeLifter.setPower(MAX_LIFTER_SPEED);
-        } else if (out) {
-            intakeLifter.setPower(MAX_LIFTER_SPEED);
+        } else if (down) {
+            intakeLifter.setPower(-MAX_LIFTER_SPEED);
         } else {
             intakeLifter.setPower(0);
         }
@@ -55,13 +54,13 @@ public class Intake
         {
             intakeRoller.setPower(MAX_ROLLER_SPEED);
         } else if (out) {
-            intakeRoller.setPower(MAX_ROLLER_SPEED);
+            intakeRoller.setPower(-MAX_ROLLER_SPEED);
         } else {
             intakeRoller.setPower(0);
         }
     }
 
-    void Bucket (boolean toggle)
+    void Bucket (boolean toggle)//make roller spin when bucket goes up
     {
         if (toggle && toggleHelper)
         {

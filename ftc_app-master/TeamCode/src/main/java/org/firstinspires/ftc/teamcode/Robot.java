@@ -1,11 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.*;
-import com.sun.tools.javac.tree.DCTree;
-
 
 public class Robot
 {
+    public HardwareMap hardwareMap;
     /*Motors*/
     //Drive
 
@@ -25,10 +24,10 @@ public class Robot
     public DcMotor intakeLifter;
     public Servo intakeBucket;
 
-    /*//Lifter
+    //Lifter
     public DcMotor lifterMotor;
 
-    //Scorer
+    /*//Scorer
     public DcMotor scorerMotor;
 
     //Marker
@@ -36,26 +35,10 @@ public class Robot
 
     void initialize(HardwareMap hardwareMap)
     {
-        //Drive
-        driveFrontRight = hardwareMap.get(DcMotor.class, "dfr");
-        driveFrontLeft = hardwareMap.get(DcMotor.class, "dfl");
-        driveBackRight = hardwareMap.get(DcMotor.class, "dbr");
-        driveBackLeft = hardwareMap.get(DcMotor.class, "dbl");
+        this.hardwareMap = hardwareMap;
 
-        driveFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        driveFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        driveBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        driveBackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        //Intake
-        //intakeExtender = hardwareMap.get(DcMotor.class, "ie");
-        //intakeLifter = hardwareMap.get(DcMotor.class, "il");
-        //intakeRoller = hardwareMap.get(DcMotor.class, "ir");
-        //intakeBucket = hardwareMap.get(Servo.class, "ib");
 
-        //intakeExtender.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        //intakeLifter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        //intakeRoller.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         /*//Lifter
         lifterMotor = hardwareMap.get(DcMotor.class, "lm");
