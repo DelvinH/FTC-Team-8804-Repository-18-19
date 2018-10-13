@@ -24,7 +24,6 @@ public class AutonomousTest extends LinearOpMode {
     @Override
     public void runOpMode()
     {
-        robot.init(hardwareMap);
         robot.initialize(hardwareMap);
 
 
