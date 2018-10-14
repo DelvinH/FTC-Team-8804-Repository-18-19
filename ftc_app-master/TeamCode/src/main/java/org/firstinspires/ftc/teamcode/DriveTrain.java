@@ -25,20 +25,20 @@ public class DriveTrain extends Robot
     void Move(double xPower,double yPower,double strafePower)
     {
         if (Math.abs(xPower) >= Math.abs(yPower) && Math.abs(strafePower) < 0.1){
-            driveFrontRight.setPower(xPower * MAX_TURN_SPEED);
-            driveFrontLeft.setPower(xPower * MAX_TURN_SPEED);
-            driveBackRight.setPower(xPower * MAX_TURN_SPEED);
-            driveBackLeft.setPower(xPower * MAX_TURN_SPEED);
+            runMotor(driveFrontRight, xPower * MAX_TURN_SPEED);
+            runMotor(driveFrontLeft, xPower * MAX_TURN_SPEED);
+            runMotor(driveBackRight, xPower * MAX_TURN_SPEED);
+            runMotor(driveBackLeft, xPower * MAX_TURN_SPEED);
         } else if (Math.abs(yPower) > Math.abs(xPower) && Math.abs(strafePower) < 0.1){
-            driveFrontRight.setPower(yPower * MAX_DRIVE_SPEED);
-            driveFrontLeft.setPower(yPower * MAX_DRIVE_SPEED);
-            driveBackRight.setPower(-yPower * MAX_DRIVE_SPEED);
-            driveBackLeft.setPower(-yPower * MAX_DRIVE_SPEED);
+            runMotor(driveFrontRight, -yPower * MAX_DRIVE_SPEED);
+            runMotor(driveFrontLeft, yPower * MAX_DRIVE_SPEED);
+            runMotor(driveBackRight, -yPower * MAX_DRIVE_SPEED);
+            runMotor(driveBackLeft, yPower * MAX_DRIVE_SPEED);
         } else {
-            driveFrontRight.setPower(strafePower * MAX_STRAFE_SPEED);
-            driveFrontLeft.setPower(strafePower * MAX_STRAFE_SPEED);
-            driveBackRight.setPower(strafePower * MAX_STRAFE_SPEED);
-            driveBackLeft.setPower(strafePower * MAX_STRAFE_SPEED);
+            runMotor(driveFrontRight, strafePower * MAX_STRAFE_SPEED);
+            runMotor(driveFrontLeft, strafePower * MAX_STRAFE_SPEED);
+            runMotor(driveBackRight, -strafePower * MAX_STRAFE_SPEED);
+            runMotor(driveBackLeft, -strafePower * MAX_STRAFE_SPEED);
         }
     }
 }

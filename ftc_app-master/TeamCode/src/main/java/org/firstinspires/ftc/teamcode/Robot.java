@@ -49,4 +49,9 @@ public class Robot
         //Marker
         markerPusher = hardwareMap.get(Servo.class, "mp");*/
     }
+
+    void runMotor(DcMotor dcMotor, double speed)
+    {
+        dcMotor.setPower(speed);
+    }
 }
