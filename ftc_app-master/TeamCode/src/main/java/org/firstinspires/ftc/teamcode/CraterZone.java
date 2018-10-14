@@ -3,8 +3,10 @@ package org.firstinspires.ftc.teamcode;
 public class CraterZone {
     public double slope;
     public double intercept;
+    public double minX;
 
-    public CraterZone(double slop, double inter){
+    public CraterZone(double smallX, double slop, double inter){
+        minX = smallX;
         slope = slop;
         intercept = inter;
     }
@@ -12,6 +14,7 @@ public class CraterZone {
     public isEntered(LocationPoint robot){
         double y = robot.getY();
         double x = robot.getX();
-        if (y > intercept)
+
+        if (y > slope * minX){
     }
 }
