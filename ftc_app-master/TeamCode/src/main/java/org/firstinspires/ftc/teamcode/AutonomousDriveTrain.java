@@ -52,15 +52,15 @@ public class AutonomousDriveTrain extends DriveTrain {
 
         while (leftEncoder.isBusy() && rightEncoder.isBusy()){
             if(leftEncoder.getCurrentPosition()-rightEncoder.getCurrentPosition() > 10) {
-                driveFrontLeft.setPower(Math.abs(power) * 0.9);
-                driveFrontRight.setPower(-Math.abs(power) * 1.1);
-                driveBackLeft.setPower(Math.abs(power) * 0.9);
-                driveBackRight.setPower(-Math.abs(power) * 1.1);
+                driveFrontLeft.setPower(Math.abs(power) * 0.95);
+                driveFrontRight.setPower(-Math.abs(power) * 1.05);
+                driveBackLeft.setPower(Math.abs(power) * 0.95);
+                driveBackRight.setPower(-Math.abs(power) * 1.05);
             } else if (rightEncoder.getCurrentPosition() - leftEncoder.getCurrentPosition() > 10) {
-                driveFrontLeft.setPower(Math.abs(power) * 1.1);
-                driveFrontRight.setPower(-Math.abs(power) * 0.9);
-                driveBackLeft.setPower(Math.abs(power) * 1.1);
-                driveBackRight.setPower(-Math.abs(power) * 0.9);
+                driveFrontLeft.setPower(Math.abs(power) * 1.05);
+                driveFrontRight.setPower(-Math.abs(power) * 0.95);
+                driveBackLeft.setPower(Math.abs(power) * 1.05);
+                driveBackRight.setPower(-Math.abs(power) * 0.95);
             }
         }
 
