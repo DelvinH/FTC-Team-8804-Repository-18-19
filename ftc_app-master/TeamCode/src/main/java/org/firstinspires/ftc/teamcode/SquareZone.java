@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
-public class SquareZone {
+public class SquareZone extends Zone{
     public double X_LEFT_BOUNDARY;
     public double X_RIGHT_BOUNDARY;
     public double Y_LOWER_BOUNDARY;
@@ -13,7 +13,7 @@ public class SquareZone {
         Y_UPPER_BOUNDARY = highY;
     }
 
-    public boolean isEntered(LocationPoint robot){
+    public boolean overlapZone(RobotZone robot){
         if (robot.getX() < X_RIGHT_BOUNDARY && robot.getY() > X_LEFT_BOUNDARY &&
                 robot.getY() < Y_UPPER_BOUNDARY && robot.getY() > Y_LOWER_BOUNDARY){
             return true;

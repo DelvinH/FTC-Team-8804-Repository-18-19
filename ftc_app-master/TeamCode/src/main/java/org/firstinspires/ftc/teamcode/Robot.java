@@ -33,6 +33,11 @@ public class Robot
     //Marker
     public Servo markerPusher;*/
 
+    //Encoders
+    public DcMotor rightEncoder;
+    public DcMotor leftEncoder;
+    public DcMotor strafeEncoder;
+
     void initialize(HardwareMap hardwareMap)
     {
         this.hardwareMap = hardwareMap;

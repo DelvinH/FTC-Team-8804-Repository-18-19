@@ -71,10 +71,10 @@ public class AutonomousTest extends LinearOpMode {
             robot.driveBackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             runtime.reset();
-            robot.driveFrontLeft.setPower(Math.abs(speed)*.9);
-            robot.driveFrontRight.setPower(Math.abs(speed)*1.1);
-            robot.driveBackLeft.setPower(Math.abs(speed)*.9);
-            robot.driveBackRight.setPower(Math.abs(speed)*1.1);
+            robot.driveFrontLeft.setPower(Math.abs(speed));
+            robot.driveFrontRight.setPower(Math.abs(speed));
+            robot.driveBackLeft.setPower(Math.abs(speed));
+            robot.driveBackRight.setPower(Math.abs(speed));
 
             while (opModeIsActive() && runtime.seconds() < timeout &&
                     robot.driveFrontLeft.isBusy() && robot.driveFrontRight.isBusy() &&

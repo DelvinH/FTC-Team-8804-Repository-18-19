@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
-public class CircleZone {
+public class CircleZone extends Zone{
 
     public double radius;
     public LocationPoint center;
@@ -10,7 +10,7 @@ public class CircleZone {
         center = cent;
     }
 
-    public boolean isEntered(LocationPoint robot){
+    public boolean overlapZone(Zone zone){
         if (center.getDistance(robot) < radius){
             return true;
         }

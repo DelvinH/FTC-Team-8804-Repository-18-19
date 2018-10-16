@@ -15,7 +15,7 @@ public class Lifter extends Robot
         lifterMotor = hardwareMap.get(DcMotor.class, "lm");
     }
 
-    void Lift(boolean up, boolean down)
+    void Lift(boolean toggle)
     {
 
     }

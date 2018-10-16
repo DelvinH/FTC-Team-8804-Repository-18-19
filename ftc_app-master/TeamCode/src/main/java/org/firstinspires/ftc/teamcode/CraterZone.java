@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
-public class CraterZone {
+public class CraterZone extends Zone{
     public double slope;
     public double intercept;
     public double minX;
