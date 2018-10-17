@@ -27,18 +27,17 @@ public class RobotLinearOpMode extends LinearOpMode
 
             boolean extenderOut = gamepad1.dpad_up;
             boolean extenderIn = gamepad1.dpad_down;
-            boolean intakeLifterUp = gamepad1.dpad_right;
-            boolean intakeLifterDown = gamepad1.dpad_left;
             boolean rollerIn = gamepad1.right_bumper;
             boolean rollerOut = gamepad1.left_bumper;
-            boolean servoToggle = gamepad1.y;
+            boolean bucketToggle = gamepad1.y;
+            boolean lifterToggle = gamepad1.a;//available buttons: r/l trigger, rsticky, r/lstick down, dpad r/l, x, b
 
             driveTrain.Move(turnInput, driveInput, strafeInput);
 
             intake.Extender(extenderIn, extenderOut);
-            intake.Lifter(intakeLifterUp, intakeLifterDown);
+            intake.Lifter(lifterToggle);
             intake.Roller(rollerIn, rollerOut);
-            intake.Bucket(servoToggle);
+            intake.Bucket(bucketToggle);
         }
     }
 }

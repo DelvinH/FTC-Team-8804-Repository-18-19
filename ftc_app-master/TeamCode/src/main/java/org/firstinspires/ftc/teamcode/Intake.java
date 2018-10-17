@@ -7,24 +7,24 @@ public class Intake extends Robot
 {
     private ElapsedTime elapsedTime = new ElapsedTime();
 
-    private static double MAX_EXTENDER_SPEED = 0.5;
-    private static double MAX_LIFTER_SPEED   = 0.3;
+    private static double MAX_EXTENDER_SPEED = 0.5;//calibrate
+    private static double MAX_LIFTER_SPEED   = 0.3;//calibrate
     private static double MAX_ROLLER_SPEED   = 1.0;
 
-    private static double SERVO_POSITION_UP   = 0.7;
-    private static double SERVO_POSITION_DOWN = 0.3;
+    private static double SERVO_POSITION_UP   = 0.7;//calibrate
+    private static double SERVO_POSITION_DOWN = 0.3;//calibrate
 
     private boolean lifterHelper = true;
-    private boolean lifterStatus = true;//true = down
+    private boolean lifterStatus = true;//lifter starts up
     private double lifterStartTime = 0;
-    private static double LIFTER_TIME_UP = 500;
-    private static double LIFTER_TIME_DOWN = 400;
+    private static double LIFTER_TIME_UP = 500;//calibrate
+    private static double LIFTER_TIME_DOWN = 400;//calibrate
 
     private boolean bucketHelper = true;
-    private boolean bucketStatus = true;//true = down
+    private boolean bucketStatus = true;//bucket starts up
     private double bucketStartTime = 0;
-    private static double BUCKET_TIME_UP = 500;
-    private static double ROLLER_BUCKET_SPEED = 0.3;
+    private static double BUCKET_TIME_UP = 500;//calibrate
+    private static double ROLLER_BUCKET_SPEED = 0.3;//calibrate
 
     void initialize()
     {
@@ -50,7 +50,7 @@ public class Intake extends Robot
         }
     }
 
-    void Lifter (boolean toggle)
+    void Lifter (boolean toggle)//may not work
     {
         if (toggle & lifterHelper && intakeLifter.getPower() == 0)
         {
@@ -59,9 +59,11 @@ public class Intake extends Robot
             if (lifterStatus) {
                 runMotor(intakeLifter, MAX_LIFTER_SPEED);
                 lifterStatus = !lifterStatus;
+                //move bucket up
             } else if (!lifterStatus) {
                 runMotor(intakeLifter, -MAX_LIFTER_SPEED);
                 lifterStatus = !lifterStatus;
+                //move bucket down
             }
         }
         if (!toggle && !lifterHelper)
@@ -90,9 +92,9 @@ public class Intake extends Robot
         }
     }
 
-    void Bucket (boolean toggle)//make roller spin when bucket goes up
+    void Bucket (boolean toggle)//may not work
     {
-        if (toggle && bucketHelper)
+        if (toggle && bucketHelper && !lifterStatus)
         {
             bucketHelper = false;
             bucketStartTime = elapsedTime.milliseconds();
