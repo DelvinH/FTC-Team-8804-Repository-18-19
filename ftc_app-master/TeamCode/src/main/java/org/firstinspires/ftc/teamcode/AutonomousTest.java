@@ -8,8 +8,10 @@ import com.qualcomm.robotcore.hardware.*;
 
 @Autonomous(name="Encoder: Drive Test", group = "Autonomous")
 public class AutonomousTest extends LinearOpMode {
-    //Robot robot = new Robot();
-    AutonomousDriveTrain driveTrain = new AutonomousDriveTrain();
+    Robot robot = new Robot();
+    DriveTrain driveTrain = new DriveTrain();
+
+    AutonomousDriveTrain autoDriveTrain = new AutonomousDriveTrain();
     /*private ElapsedTime runtime = new ElapsedTime();
 
 
@@ -37,17 +39,19 @@ public class AutonomousTest extends LinearOpMode {
         robot.driveBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.driveBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);*/
 
+        robot.initialize(hardwareMap);
         driveTrain.initialize();
+        autoDriveTrain.initialize();
 
-        telemetry.addData("Path0", "Starting at %7d :%7d :%7d :%7d", driveTrain.driveFrontRight.getCurrentPosition(),
-                            driveTrain.driveFrontLeft.getCurrentPosition(), driveTrain.driveBackRight.getCurrentPosition(),
-                            driveTrain.driveBackLeft.getCurrentPosition());
+        telemetry.addData("Path0", "Starting at %7d :%7d :%7d :%7d", autoDriveTrain.driveFrontRight.getCurrentPosition(),
+                            autoDriveTrain.driveFrontLeft.getCurrentPosition(), autoDriveTrain.driveBackRight.getCurrentPosition(),
+                            autoDriveTrain.driveBackLeft.getCurrentPosition());
         telemetry.update();
 
         waitForStart();
 
         //encoderDrive(DRIVE_SPEED, 60, 10);
-        driveTrain.encoderDrive(0.5,12,5);
+        autoDriveTrain.encoderDrive(0.5,12,5);
     }
     /*
     public void encoderDrive(double speed, double distance, double timeout)
@@ -87,12 +91,12 @@ public class AutonomousTest extends LinearOpMode {
                 telemetry.addData("Path2",  "Running at %7d :%7d :%7d :%7d",
                         robot.driveFrontLeft.getCurrentPosition(),
                         robot.driveFrontRight.getCurrentPosition(),
-                        robot.driveBackLeft.getCurrentPosition(),
+                        robot.driveBackLeft.getCurrentPosition(),s
                         robot.driveBackRight.getCurrentPosition());
                 telemetry.update();
             }
 
-            robot.driveFrontLeft.setPower(0);
+            robot.driveFrontLeft.setPower(0); runMotor(driveFrontLeft, 0);
             robot.driveFrontRight.setPower(0);
             robot.driveBackLeft.setPower(0);
             robot.driveBackRight.setPower(0);

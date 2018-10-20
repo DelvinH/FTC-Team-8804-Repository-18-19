@@ -18,13 +18,17 @@ public class AutonomousDriveTrain extends DriveTrain {
     static final double TURN_SPEED              = 0.5;
 
     void initialize() {
+        leftEncoder = driveFrontLeft;
+        rightEncoder = driveFrontRight;
+        //strafeEncoder = driveBackRight;
+
         leftEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        strafeEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //strafeEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         leftEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        strafeEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //strafeEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void encoderDrive(double power, double distance, double timeout) {//distance must be positive; goes forward distance inches
