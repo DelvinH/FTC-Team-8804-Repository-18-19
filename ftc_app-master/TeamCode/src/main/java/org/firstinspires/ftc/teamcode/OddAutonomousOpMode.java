@@ -25,7 +25,7 @@ public class OddAutonomousOpMode extends LinearOpMode {
 
         waitForStart();
 
-        while (opModeIsActive()) {
+        /*while (opModeIsActive()) {
             if (step1) {//land and score
                 runStep1();
             } else if (step2) {//go to jewel and knock jewel
@@ -35,7 +35,7 @@ public class OddAutonomousOpMode extends LinearOpMode {
             } else if (step4) {//go to crater and park
                 runStep4();
             }
-        }
+        }*/
     }
 
     public void runStep1() {

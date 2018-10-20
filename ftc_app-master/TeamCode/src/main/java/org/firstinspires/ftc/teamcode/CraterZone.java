@@ -11,10 +11,12 @@ public class CraterZone extends Zone{
         intercept = inter;
     }
 
-    public isEntered(LocationPoint robot){
-        double y = robot.getY();
-        double x = robot.getX();
+    @Override
+    public boolean overlapZone(Zone robot){
+        /*double y = robot.getY();
+        double x = robot.getX();*/
 
-        if (y > slope * minX){
+        //if (y > slope * minX){}
+        return false;
     }
 }
