@@ -8,8 +8,9 @@ import com.qualcomm.robotcore.hardware.*;
 
 @Autonomous(name="Encoder: Drive Test", group = "Autonomous")
 public class AutonomousTest extends LinearOpMode {
-    Robot robot = new Robot();
-    private ElapsedTime runtime = new ElapsedTime();
+    //Robot robot = new Robot();
+    AutonomousDriveTrain driveTrain = new AutonomousDriveTrain();
+    /*private ElapsedTime runtime = new ElapsedTime();
 
 
     static final double COUNT_PER_MOTOR_REV     = 1680;
@@ -20,13 +21,11 @@ public class AutonomousTest extends LinearOpMode {
 
     static final double DRIVE_SPEED             = 0.3;
     static final double TURN_SPEED              = 0.5;
-
+    */
     @Override
     public void runOpMode()
     {
-        robot.initialize(hardwareMap);
-
-
+        /*robot.initialize(hardwareMap);
 
         robot.driveFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.driveFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -36,18 +35,21 @@ public class AutonomousTest extends LinearOpMode {
         robot.driveFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.driveFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.driveBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.driveBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.driveBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);*/
 
-        telemetry.addData("Path0", "Starting at %7d :%7d :%7d :%7d", robot.driveFrontRight.getCurrentPosition(),
-                            robot.driveFrontLeft.getCurrentPosition(), robot.driveBackRight.getCurrentPosition(),
-                            robot.driveBackLeft.getCurrentPosition());
+        driveTrain.initialize();
+
+        telemetry.addData("Path0", "Starting at %7d :%7d :%7d :%7d", driveTrain.driveFrontRight.getCurrentPosition(),
+                            driveTrain.driveFrontLeft.getCurrentPosition(), driveTrain.driveBackRight.getCurrentPosition(),
+                            driveTrain.driveBackLeft.getCurrentPosition());
         telemetry.update();
 
         waitForStart();
 
-        encoderDrive(DRIVE_SPEED, 60, 10);
+        //encoderDrive(DRIVE_SPEED, 60, 10);
+        driveTrain.encoderDrive(0.5,12,5);
     }
-
+    /*
     public void encoderDrive(double speed, double distance, double timeout)
     {
         int newTarget;
@@ -102,6 +104,6 @@ public class AutonomousTest extends LinearOpMode {
 
 
         }
-    }
+    }*/
 }
 

@@ -39,13 +39,13 @@ public class AutonomousDriveTrain extends DriveTrain {
         while (Math.abs(leftEncoder.getCurrentPosition()) < targetEncoderPosition || Math.abs(rightEncoder.getCurrentPosition()) < targetEncoderPosition) {
             if (leftEncoder.getCurrentPosition() - rightEncoder.getCurrentPosition() > 0) {
                 runMotor(driveFrontRight, power);
-                runMotor(driveFrontLeft, power * (1 - .01 * leftEncoder.getCurrentPosition() - rightEncoder.getCurrentPosition()));
+                runMotor(driveFrontLeft, power * (1 - .01 * (leftEncoder.getCurrentPosition() - rightEncoder.getCurrentPosition())));
                 runMotor(driveBackRight, power);
-                runMotor(driveBackLeft, power * (1 - .01 * leftEncoder.getCurrentPosition() - rightEncoder.getCurrentPosition()));
+                runMotor(driveBackLeft, power * (1 - .01 * (leftEncoder.getCurrentPosition() - rightEncoder.getCurrentPosition())));
             } else if (rightEncoder.getCurrentPosition() - leftEncoder.getCurrentPosition() > 0) {
-                runMotor(driveFrontRight, power * (1 - .01 * rightEncoder.getCurrentPosition() - leftEncoder.getCurrentPosition()));
+                runMotor(driveFrontRight, power * (1 - .01 * (rightEncoder.getCurrentPosition() - leftEncoder.getCurrentPosition())));
                 runMotor(driveFrontLeft, power);
-                runMotor(driveBackRight, power * (1 - .01 * rightEncoder.getCurrentPosition() - leftEncoder.getCurrentPosition()));
+                runMotor(driveBackRight, power * (1 - .01 * (rightEncoder.getCurrentPosition() - leftEncoder.getCurrentPosition())));
                 runMotor(driveBackLeft, power);
             } else {
                 runMotor(driveFrontRight,power);
