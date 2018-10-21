@@ -10,12 +10,13 @@ public class CircleZone extends Zone{
         center = cent;
     }
 
-    public boolean overlapZone(Zone zone){
-        if (center.getDistance(robot) < radius){
+    public boolean overlapZone(Zone robot){
+        /*if (center.getDistance(robot) < radius){
             return true;
         }
         else {
             return false;
-        }
+        }*/
+        return false;
     }
 }

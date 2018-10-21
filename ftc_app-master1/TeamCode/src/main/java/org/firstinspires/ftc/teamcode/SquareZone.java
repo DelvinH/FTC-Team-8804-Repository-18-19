@@ -13,13 +13,14 @@ public class SquareZone extends Zone{
         Y_UPPER_BOUNDARY = highY;
     }
 
-    public boolean overlapZone(RobotZone robot){
-        if (robot.getX() < X_RIGHT_BOUNDARY && robot.getY() > X_LEFT_BOUNDARY &&
+    public boolean overlapZone(Zone robot){
+        /*if (robot.getX() < X_RIGHT_BOUNDARY && robot.getY() > X_LEFT_BOUNDARY &&
                 robot.getY() < Y_UPPER_BOUNDARY && robot.getY() > Y_LOWER_BOUNDARY){
             return true;
         }
         else{
             return false;
-        }
+        }*/
+        return false;
     }
 }
