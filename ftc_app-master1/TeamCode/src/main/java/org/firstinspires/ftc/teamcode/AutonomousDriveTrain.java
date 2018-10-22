@@ -152,7 +152,7 @@ public class AutonomousDriveTrain{
         runtime.reset();
 
         while (absLeftEncoderPos < targetEncoderPosition && absRightEncoderPos < targetEncoderPosition && runtime.seconds() < timeout) {
-            if (absLeftEncoderPos - absRightEncoderPos > 0) {
+            /*if (absLeftEncoderPos - absRightEncoderPos > 0) {
                 drivetrain.driveFrontRight.setPower(-power * DRIVE_SPEED);
                 drivetrain.driveFrontLeft.setPower(-power * DRIVE_SPEED * (1 - .01 * (absLeftEncoderPos - absRightEncoderPos)));
                 drivetrain.driveBackRight.setPower(-power * DRIVE_SPEED);
@@ -162,15 +162,16 @@ public class AutonomousDriveTrain{
                 drivetrain.driveFrontLeft.setPower(-power * DRIVE_SPEED);
                 drivetrain.driveBackRight.setPower(-power * DRIVE_SPEED * (1 - .01 * (absRightEncoderPos - absLeftEncoderPos)));
                 drivetrain.driveBackLeft.setPower(-power * DRIVE_SPEED);
-            } else {
-                drivetrain.driveFrontRight.setPower(-power * DRIVE_SPEED);
-                drivetrain.driveFrontLeft.setPower(-power * DRIVE_SPEED);
-                drivetrain.driveBackRight.setPower(-power * DRIVE_SPEED);
-                drivetrain.driveBackLeft.setPower(-power * DRIVE_SPEED);
-            }
+            } else {*/
+            drivetrain.driveFrontRight.setPower(-power * TURN_SPEED);
+            drivetrain.driveFrontLeft.setPower(-power * TURN_SPEED);
+            drivetrain.driveBackRight.setPower(-power * TURN_SPEED);
+            drivetrain.driveBackLeft.setPower(-power * TURN_SPEED);
+            //}
             absLeftEncoderPos = Math.abs(leftEncoder.getCurrentPosition());
             absRightEncoderPos = Math.abs(rightEncoder.getCurrentPosition());
         }
+
         drivetrain.driveFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         drivetrain.driveFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         drivetrain.driveBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
