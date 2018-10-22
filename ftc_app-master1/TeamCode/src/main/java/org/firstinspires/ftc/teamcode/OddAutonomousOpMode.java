@@ -12,7 +12,6 @@ public class OddAutonomousOpMode extends LinearOpMode {
     Lifter lifter = new Lifter();
 
 
-
     public static double RIGHT_TRAIN_SPEED = 0.9;//calibrate
     public static double LEFT_TRAIN_SPEED = 1.0;//calibrate
 
@@ -21,7 +20,7 @@ public class OddAutonomousOpMode extends LinearOpMode {
     @Override
     public void runOpMode() {
         robot.initialize(hardwareMap);
-        aDriveTrain.initialize();
+        //aDriveTrain.initialize();
 
         waitForStart();
 
@@ -45,7 +44,5 @@ public class OddAutonomousOpMode extends LinearOpMode {
     public void runStep2() {
 
     }
-
-
 
 }

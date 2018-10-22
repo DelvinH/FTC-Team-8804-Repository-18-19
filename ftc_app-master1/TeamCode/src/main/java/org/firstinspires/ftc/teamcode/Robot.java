@@ -5,13 +5,15 @@ import com.qualcomm.robotcore.hardware.*;
 public class Robot
 {
     public HardwareMap hardwareMap;
+    public DriveTrain driveTrain;
+    public AutonomousDriveTrain autoDriveTrain;
     /*Motors*/
     //Drive
 
-    public DcMotor driveFrontRight;
+    /*public DcMotor driveFrontRight;
     public DcMotor driveFrontLeft;
     public DcMotor driveBackRight;
-    public DcMotor driveBackLeft;
+    public DcMotor driveBackLeft;*/
 
     /*public Encoder encoderRight;
     public Encoder encoderLeft;
@@ -19,10 +21,12 @@ public class Robot
      */
 
     //Intake
+    /*
     public DcMotor intakeExtender;
     public DcMotor intakeRoller;
     public DcMotor intakeLifter;
     public Servo intakeBucket;
+    */
 
     //Lifter
     public DcMotor lifterMotor;
@@ -34,15 +38,21 @@ public class Robot
     public Servo markerPusher;*/
 
     //Encoders
-    public DcMotor rightEncoder;
-    public DcMotor leftEncoder;
-    public DcMotor strafeEncoder;
+
 
     void initialize(HardwareMap hardwareMap)
     {
         this.hardwareMap = hardwareMap;
 
+        driveTrain = new DriveTrain();
+        driveTrain.initialize(hardwareMap);
 
+        autoDriveTrain = new AutonomousDriveTrain();
+        autoDriveTrain.initialize(driveTrain);
+
+
+
+        //Drivetrain
 
 
         /*//Lifter

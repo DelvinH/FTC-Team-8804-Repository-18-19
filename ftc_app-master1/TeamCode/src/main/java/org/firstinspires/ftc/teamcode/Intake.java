@@ -7,6 +7,11 @@ public class Intake extends Robot
 {
     private ElapsedTime elapsedTime = new ElapsedTime();
 
+    public DcMotor intakeExtender;
+    public DcMotor intakeRoller;
+    public DcMotor intakeLifter;
+    public Servo   intakeBucket;
+
     private static double MAX_EXTENDER_SPEED = 0.5;//calibrate
     private static double MAX_LIFTER_SPEED   = 0.3;//calibrate
     private static double MAX_ROLLER_SPEED   = 1.0;

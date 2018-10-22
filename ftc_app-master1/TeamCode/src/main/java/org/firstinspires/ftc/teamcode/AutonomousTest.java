@@ -9,9 +9,9 @@ import com.qualcomm.robotcore.hardware.*;
 @Autonomous(name="Encoder: Drive Test 2", group = "Autonomous")
 public class AutonomousTest extends LinearOpMode {
     Robot robot = new Robot();
-    DriveTrain driveTrain = new DriveTrain();
+    //DriveTrain driveTrain = new DriveTrain();
 
-    AutonomousDriveTrain autoDriveTrain = new AutonomousDriveTrain();
+    //AutonomousDriveTrain autoDriveTrain = new AutonomousDriveTrain();
     /*private ElapsedTime runtime = new ElapsedTime();
 
 
@@ -27,9 +27,9 @@ public class AutonomousTest extends LinearOpMode {
     @Override
     public void runOpMode()
     {
-        /*robot.initialize(hardwareMap);
+        //robot.initialize(hardwareMap);
 
-        robot.driveFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        /*robot.driveFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.driveFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.driveBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.driveBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -40,18 +40,17 @@ public class AutonomousTest extends LinearOpMode {
         robot.driveBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);*/
 
         robot.initialize(hardwareMap);
-        driveTrain.initialize();
-        autoDriveTrain.initialize();
+        //robot.driveTrain.initialize();
+        //autoDriveTrain.initialize();
 
-        telemetry.addData("Path0", "Starting at %7d :%7d :%7d :%7d", autoDriveTrain.driveFrontRight.getCurrentPosition(),
-                            autoDriveTrain.driveFrontLeft.getCurrentPosition(), autoDriveTrain.driveBackRight.getCurrentPosition(),
-                            autoDriveTrain.driveBackLeft.getCurrentPosition());
+        telemetry.addData("Path0", "Starting at %7d :%7d", robot.driveTrain.driveFrontRight.getCurrentPosition(),
+                            robot.driveTrain.driveFrontLeft.getCurrentPosition());
         telemetry.update();
 
         waitForStart();
 
         //encoderDrive(DRIVE_SPEED, 60, 10);
-        autoDriveTrain.encoderDrive(0.5,12,5);
+        robot.autoDriveTrain.encoderDrive(0.3,36,5);
     }
     /*
     public void encoderDrive(double speed, double distance, double timeout)
