@@ -18,12 +18,14 @@ public class AutonomousDriveTrain{
     static final double CPR                     = 360;
     static final double WHEEL_DIAMETER_INCHES   = 4.0;
     static final double COUNTS_PER_INCH         = CPR * 1 / (WHEEL_DIAMETER_INCHES * Math.PI);
+    static final double COUNTS_PER_DEGREE       = 0;
 
     static final double DRIVE_SPEED             = 0.3;
     static final double TURN_SPEED              = 0.5;
 
     void initialize(DriveTrain drivetrain) {
         this.drivetrain = drivetrain;
+
         leftEncoder = drivetrain.driveFrontLeft;
         rightEncoder = drivetrain.driveFrontRight;
         //strafeEncoder = driveBackRight;
@@ -39,7 +41,7 @@ public class AutonomousDriveTrain{
 
     public void encoderDrive(double power, double distance, double timeout) {//distance must be positive; goes forward distance inches
         if (distance < 0) {
-            throw new IllegalArgumentException("Distance must be negative");
+            throw new IllegalArgumentException("Distance must be positive");
         }
 
         int targetEncoderPosition = (int) (distance * COUNTS_PER_INCH);
@@ -54,7 +56,9 @@ public class AutonomousDriveTrain{
         int absLeftEncoderPos = Math.abs(leftEncoder.getCurrentPosition());
         int absRightEncoderPos = Math.abs(rightEncoder.getCurrentPosition());
 
-        while (absLeftEncoderPos < targetEncoderPosition && absRightEncoderPos < targetEncoderPosition) {
+        runtime.reset();
+
+        while (absLeftEncoderPos < targetEncoderPosition && absRightEncoderPos < targetEncoderPosition && runtime.seconds() < timeout) {
             if (absLeftEncoderPos - absRightEncoderPos > 0) {
                 drivetrain.driveFrontRight.setPower(-power * DRIVE_SPEED);
                 drivetrain.driveFrontLeft.setPower(power * DRIVE_SPEED * (1 - .01 * (absLeftEncoderPos - absRightEncoderPos)));
@@ -70,19 +74,19 @@ public class AutonomousDriveTrain{
                 drivetrain.driveFrontLeft.setPower(power * DRIVE_SPEED);
                 drivetrain.driveBackRight.setPower(-power * DRIVE_SPEED);
                 drivetrain.driveBackLeft.setPower(power * DRIVE_SPEED);
-                }
             }
-            drivetrain.driveFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            drivetrain.driveFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            drivetrain.driveBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            drivetrain.driveBackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            absLeftEncoderPos = Math.abs(leftEncoder.getCurrentPosition());
+            absRightEncoderPos = Math.abs(rightEncoder.getCurrentPosition());
+        }
+        drivetrain.driveFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        drivetrain.driveFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        drivetrain.driveBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        drivetrain.driveBackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-            drivetrain.driveFrontLeft.setPower(0);
-            drivetrain.driveFrontRight.setPower(0);
-            drivetrain.driveBackLeft.setPower(0);
-            drivetrain.driveBackRight.setPower(0);
-
-
+        drivetrain.driveFrontLeft.setPower(0);
+        drivetrain.driveFrontRight.setPower(0);
+        drivetrain.driveBackLeft.setPower(0);
+        drivetrain.driveBackRight.setPower(0);
 
 
 
@@ -126,6 +130,107 @@ public class AutonomousDriveTrain{
 
         leftEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);*/
-
     }
+
+    public void encoderTurn(double power, double degrees, double timeout) { //Negative power for left turn
+        if (degrees < 0) {
+            throw new IllegalArgumentException("Angle must be positive");
+        }
+
+        int targetEncoderPosition = (int) (degrees * COUNTS_PER_DEGREE);
+
+        leftEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //strafeEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        leftEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        int absLeftEncoderPos = Math.abs(leftEncoder.getCurrentPosition());
+        int absRightEncoderPos = Math.abs(rightEncoder.getCurrentPosition());
+
+        runtime.reset();
+
+        while (absLeftEncoderPos < targetEncoderPosition && absRightEncoderPos < targetEncoderPosition && runtime.seconds() < timeout) {
+            if (absLeftEncoderPos - absRightEncoderPos > 0) {
+                drivetrain.driveFrontRight.setPower(-power * DRIVE_SPEED);
+                drivetrain.driveFrontLeft.setPower(-power * DRIVE_SPEED * (1 - .01 * (absLeftEncoderPos - absRightEncoderPos)));
+                drivetrain.driveBackRight.setPower(-power * DRIVE_SPEED);
+                drivetrain.driveBackLeft.setPower(-power * DRIVE_SPEED * (1 - .01 * (absLeftEncoderPos - absRightEncoderPos)));
+            } else if (absRightEncoderPos - absLeftEncoderPos > 0) {
+                drivetrain.driveFrontRight.setPower(-power * DRIVE_SPEED * (1 - .01 * (absRightEncoderPos - absLeftEncoderPos)));
+                drivetrain.driveFrontLeft.setPower(-power * DRIVE_SPEED);
+                drivetrain.driveBackRight.setPower(-power * DRIVE_SPEED * (1 - .01 * (absRightEncoderPos - absLeftEncoderPos)));
+                drivetrain.driveBackLeft.setPower(-power * DRIVE_SPEED);
+            } else {
+                drivetrain.driveFrontRight.setPower(-power * DRIVE_SPEED);
+                drivetrain.driveFrontLeft.setPower(-power * DRIVE_SPEED);
+                drivetrain.driveBackRight.setPower(-power * DRIVE_SPEED);
+                drivetrain.driveBackLeft.setPower(-power * DRIVE_SPEED);
+            }
+            absLeftEncoderPos = Math.abs(leftEncoder.getCurrentPosition());
+            absRightEncoderPos = Math.abs(rightEncoder.getCurrentPosition());
+        }
+        drivetrain.driveFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        drivetrain.driveFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        drivetrain.driveBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        drivetrain.driveBackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        drivetrain.driveFrontLeft.setPower(0);
+        drivetrain.driveFrontRight.setPower(0);
+        drivetrain.driveBackLeft.setPower(0);
+        drivetrain.driveBackRight.setPower(0);
+    }
+
+    /*public void encoderStrafe(double power, double distance, double timeout) { //Positive for right
+        if (distance < 0) {
+            throw new IllegalArgumentException("Distance must be positive");
+        }
+
+        int targetEncoderPosition = (int) (distance * COUNTS_PER_INCH);
+
+        //leftEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //rightEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        strafeEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        //leftEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //rightEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        strafeEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        //int absLeftEncoderPos = Math.abs(leftEncoder.getCurrentPosition());
+        //int absRightEncoderPos = Math.abs(rightEncoder.getCurrentPosition());
+
+
+        runtime.reset();
+
+        while (absLeftEncoderPos < targetEncoderPosition && absRightEncoderPos < targetEncoderPosition && runtime.seconds() < timeout) {
+            if (absLeftEncoderPos - absRightEncoderPos > 0) {
+                drivetrain.driveFrontRight.setPower(-power * DRIVE_SPEED);
+                drivetrain.driveFrontLeft.setPower(-power * DRIVE_SPEED * (1 - .01 * (absLeftEncoderPos - absRightEncoderPos)));
+                drivetrain.driveBackRight.setPower(-power * DRIVE_SPEED);
+                drivetrain.driveBackLeft.setPower(-power * DRIVE_SPEED * (1 - .01 * (absLeftEncoderPos - absRightEncoderPos)));
+            } else if (absRightEncoderPos - absLeftEncoderPos > 0) {
+                drivetrain.driveFrontRight.setPower(-power * DRIVE_SPEED * (1 - .01 * (absRightEncoderPos - absLeftEncoderPos)));
+                drivetrain.driveFrontLeft.setPower(-power * DRIVE_SPEED);
+                drivetrain.driveBackRight.setPower(-power * DRIVE_SPEED * (1 - .01 * (absRightEncoderPos - absLeftEncoderPos)));
+                drivetrain.driveBackLeft.setPower(-power * DRIVE_SPEED);
+            } else {
+                drivetrain.driveFrontRight.setPower(-power * DRIVE_SPEED);
+                drivetrain.driveFrontLeft.setPower(-power * DRIVE_SPEED);
+                drivetrain.driveBackRight.setPower(-power * DRIVE_SPEED);
+                drivetrain.driveBackLeft.setPower(-power * DRIVE_SPEED);
+            }
+            absLeftEncoderPos = Math.abs(leftEncoder.getCurrentPosition());
+            absRightEncoderPos = Math.abs(rightEncoder.getCurrentPosition());
+        }
+        drivetrain.driveFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        drivetrain.driveFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        drivetrain.driveBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        drivetrain.driveBackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        drivetrain.driveFrontLeft.setPower(0);
+        drivetrain.driveFrontRight.setPower(0);
+        drivetrain.driveBackLeft.setPower(0);
+        drivetrain.driveBackRight.setPower(0);
+    }*/
 }

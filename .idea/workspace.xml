@@ -7,16 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1b37b01-f35d-40a6-86b2-c1ff642ba1ab" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/FTC-Team-8804-Repository-18-19.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FTC-Team-8804-Repository-18-19.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/AutonomousDriveTrain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/AutonomousTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/AutonomousTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/DriveTrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/DriveTrain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Intake.java" beforeDir="false" afterPath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Intake.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/OddAutonomousOpMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/OddAutonomousOpMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Robot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/RobotLinearOpMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/RobotLinearOpMode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/AutonomousDriveTrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/AutonomousDriveTrain.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,7 +42,7 @@
         <entry file="file://$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/AutonomousDriveTrain.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="465">
-              <caret line="41" column="60" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
+              <caret line="43" column="60" selection-start-line="43" selection-start-column="60" selection-end-line="43" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -551,7 +543,7 @@
     <entry file="file://$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/AutonomousDriveTrain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
-          <caret line="41" column="60" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
+          <caret line="43" column="60" selection-start-line="43" selection-start-column="60" selection-end-line="43" selection-end-column="60" />
         </state>
       </provider>
     </entry>
