@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.*;
 
 
-@Autonomous(name="Encoder: Drive Test 2", group = "Autonomous")
+@Autonomous(name="Encoder: Drive Test 4", group = "Autonomous")
 public class AutonomousTest extends LinearOpMode {
     Robot robot = new Robot();
     //DriveTrain driveTrain = new DriveTrain();
