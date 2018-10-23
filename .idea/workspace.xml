@@ -6,10 +6,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1b37b01-f35d-40a6-86b2-c1ff642ba1ab" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/AutonomousDriveTrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/ftc_app-master1/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/AutonomousDriveTrain.java" afterDir="false" />
-    </list>
+    <list default="true" id="c1b37b01-f35d-40a6-86b2-c1ff642ba1ab" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

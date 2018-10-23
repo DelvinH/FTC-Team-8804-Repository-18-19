@@ -15,7 +15,7 @@ public class AutonomousDriveTrain{
 
     private ElapsedTime runtime = new ElapsedTime();
 
-    static final double CPR                     = 360;
+    static final double CPR                     = 1440;
     static final double WHEEL_DIAMETER_INCHES   = 4.0;
     static final double COUNTS_PER_INCH         = CPR * 1 / (WHEEL_DIAMETER_INCHES * Math.PI);
     static final double COUNTS_PER_DEGREE       = 0;

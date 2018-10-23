@@ -50,7 +50,7 @@ public class AutonomousTest extends LinearOpMode {
         waitForStart();
 
         //encoderDrive(DRIVE_SPEED, 60, 10);
-        robot.autoDriveTrain.encoderDrive(0.3,36,5);
+        robot.autoDriveTrain.encoderDrive(0.3,24,5);
     }
     /*
     public void encoderDrive(double speed, double distance, double timeout)
