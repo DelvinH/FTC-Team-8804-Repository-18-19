@@ -10,6 +10,8 @@ public class Robot
     /*Motors*/
     //Drive
 
+    public static LocationPoint robotLocation;
+    public static double robotOrientation;
     /*public DcMotor driveFrontRight;
     public DcMotor driveFrontLeft;
     public DcMotor driveBackRight;
@@ -49,8 +51,6 @@ public class Robot
 
         autoDriveTrain = new AutonomousDriveTrain();
         autoDriveTrain.initialize(driveTrain);
-
-
 
         //Drivetrain
 
