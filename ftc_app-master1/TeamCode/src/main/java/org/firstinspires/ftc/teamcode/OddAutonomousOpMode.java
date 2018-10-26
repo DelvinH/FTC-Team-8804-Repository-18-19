@@ -55,8 +55,8 @@ public class OddAutonomousOpMode extends LinearOpMode {
     }
 
     public void runStep2() {
-        robot.autoDriveTrain.driveTo(view_minerals,DRIVE_SPEED);
-        robot.autoDriveTrain.turnTo(view_minerals_orien);
+        robot.autoDriveTrain.driveTo(view_minerals, DRIVE_SPEED);
+        robot.autoDriveTrain.turnTo(view_minerals_orien, TURN_SPEED);
         //Scan minerals logic
         //Hit mineral
     }

@@ -51,12 +51,8 @@ public class AutonomousDriveTrain {
         double targetDistance = originalLocation.getDistanceTo(target);
         double targetOrientation = originalLocation.getAngleTo(target);//may not work
 
-        turnTo(targetOrientation,power); //turn toward target
+        turnTo(targetOrientation, power); //turn toward target
         encoderDrive(power * DRIVE_SPEED, targetDistance, 10);//drive toward target
-
-        //code to turn toward target then drive the correct distance
-        //veering correction
-        //updating location/orientation
     }
 
     void turnTo(double target, double power) {
