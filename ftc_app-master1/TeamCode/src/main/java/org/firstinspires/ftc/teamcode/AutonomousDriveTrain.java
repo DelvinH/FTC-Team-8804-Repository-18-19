@@ -17,6 +17,7 @@ public class AutonomousDriveTrain {
     public double orientation;
 
     public LocationPoint originalLocation;
+    public double originalOrientation;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -48,16 +49,22 @@ public class AutonomousDriveTrain {
     void driveTo(LocationPoint target, double power) {//called once, not in loop
         originalLocation = new LocationPoint(location.getX(), location.getY());
         double targetDistance = originalLocation.getDistanceTo(target);
-        double targetOrientation = originalLocation.getAngleTo(target) - orientation;//may not work
+        double targetOrientation = originalLocation.getAngleTo(target);//may not work
 
-        int turn_direction = (targetOrientation > 0)? 1:-1;
-        encoderTurn(turn_direction * power * TURN_SPEED, Math.abs(targetOrientation), 10);//turn toward target
+        turnTo(targetOrientation,power); //turn toward target
         encoderDrive(power * DRIVE_SPEED, targetDistance, 10);//drive toward target
 
         //code to turn toward target then drive the correct distance
         //veering correction
         //updating location/orientation
     }
+
+    void turnTo(double target, double power) {
+        originalOrientation = orientation;
+        int turn_direction = (target - originalOrientation > 0)? 1:-1;
+        encoderTurn(turn_direction * power * TURN_SPEED, Math.abs(target - originalOrientation), 10); //counterclockwise is neg
+    }
+
 
     void updateLocation() {
         int avg_encoder = (Math.abs(leftEncoder.getCurrentPosition()) + Math.abs(rightEncoder.getCurrentPosition())) / 2;
@@ -70,10 +77,8 @@ public class AutonomousDriveTrain {
         int avg_encoder = (Math.abs(leftEncoder.getCurrentPosition()) + Math.abs(rightEncoder.getCurrentPosition()))/2;
         double avg_degrees = avg_encoder / COUNTS_PER_DEGREE;
         orientation += avg_degrees;
-
     }
-
-
+    
     public void encoderDrive(double power, double distance, double timeout) {//distance must be positive; goes forward distance inches
         if (distance < 0) {
             throw new IllegalArgumentException("Distance must be positive");
@@ -188,7 +193,7 @@ public class AutonomousDriveTrain {
         runtime.reset();
 
         while (absLeftEncoderPos < targetEncoderPosition && absRightEncoderPos < targetEncoderPosition && runtime.seconds() < timeout) {
-            if (absLeftEncoderPos - absRightEncoderPos > 0) {
+            /*if (absLeftEncoderPos - absRightEncoderPos > 0) {
                 drivetrain.driveFrontRight.setPower(-power * DRIVE_SPEED);
                 drivetrain.driveFrontLeft.setPower(-power * DRIVE_SPEED * (1 - .01 * (absLeftEncoderPos - absRightEncoderPos)));
                 drivetrain.driveBackRight.setPower(-power * DRIVE_SPEED);
@@ -198,11 +203,11 @@ public class AutonomousDriveTrain {
                 drivetrain.driveFrontLeft.setPower(-power * DRIVE_SPEED);
                 drivetrain.driveBackRight.setPower(-power * DRIVE_SPEED * (1 - .01 * (absRightEncoderPos - absLeftEncoderPos)));
                 drivetrain.driveBackLeft.setPower(-power * DRIVE_SPEED);
-            } else {
-                drivetrain.driveFrontRight.setPower(-power * TURN_SPEED);
-                drivetrain.driveFrontLeft.setPower(-power * TURN_SPEED);
-                drivetrain.driveBackRight.setPower(-power * TURN_SPEED);
-                drivetrain.driveBackLeft.setPower(-power * TURN_SPEED);
+            } else {*/
+            drivetrain.driveFrontRight.setPower(power * TURN_SPEED);
+            drivetrain.driveFrontLeft.setPower(power * TURN_SPEED);
+            drivetrain.driveBackRight.setPower(power * TURN_SPEED);
+            drivetrain.driveBackLeft.setPower(power * TURN_SPEED);
                 //}
                 absLeftEncoderPos = Math.abs(leftEncoder.getCurrentPosition());
                 absRightEncoderPos = Math.abs(rightEncoder.getCurrentPosition());
@@ -280,5 +285,5 @@ public class AutonomousDriveTrain {
     public double updateOrientation() {
         return orientation;
     }*/
-    }
+    //}
 }

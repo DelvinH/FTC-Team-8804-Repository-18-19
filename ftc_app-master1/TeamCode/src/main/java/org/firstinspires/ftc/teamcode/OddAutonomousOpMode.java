@@ -20,6 +20,9 @@ public class OddAutonomousOpMode extends LinearOpMode {
     //FILL IN CONSTANTS
     public static double vuf_turn = 0;
 
+    public LocationPoint view_minerals;
+    public double view_minerals_orien;
+
     public int step = 1;
 
     @Override
@@ -32,11 +35,11 @@ public class OddAutonomousOpMode extends LinearOpMode {
         while (opModeIsActive()) {
             if (step == 1) {//land and locate position
                 runStep1();
-            } else if (step2) {//go to jewel and knock jewel
+            } else if (step == 2) {//go to jewel and knock jewel
                 runStep2();
-            } else if (step3) {//go to depot and score
+            } else if (step == 3) {//go to depot and score
                 runStep3();
-            } else if (step4) {//go to crater and park
+            } else if (step == 4) {//go to crater and park
                 runStep4();
             }
         }
@@ -48,13 +51,24 @@ public class OddAutonomousOpMode extends LinearOpMode {
         robot.autoDriveTrain.encoderStrafe(STRAFE_SPEED,3,2);
         robot.autoDriveTrain.encoderTurn(TURN_SPEED, vuf_turn, 2);
         //Vuforia locate orientation
-        robot.autoDriveTrain.encoderTurn();
+        step = 2;
     }
 
-
-
     public void runStep2() {
+        robot.autoDriveTrain.driveTo(view_minerals,DRIVE_SPEED);
+        robot.autoDriveTrain.turnTo(view_minerals_orien);
+        //Scan minerals logic
+        //Hit mineral
+    }
 
+    public void runStep3() {
+        //Navigate to depot
+        //Drop off marker
+    }
+
+    public void runStep4() {
+        //Navigate to crater
+        //Drive into crater
     }
 
 }
