@@ -35,21 +35,21 @@ public class AutonomousDriveTrain {
 
         leftEncoder = drivetrain.driveFrontLeft;
         rightEncoder = drivetrain.driveFrontRight;
-        //strafeEncoder = driveBackRight;
+        strafeEncoder = drivetrain.driveBackRight;
 
         leftEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        //strafeEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        strafeEncoder.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         leftEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        //strafeEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        strafeEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     void driveTo(LocationPoint target, double power) {//called once, not in loop
         originalLocation = new LocationPoint(location.getX(), location.getY());
         double targetDistance = originalLocation.getDistanceTo(target);
-        double targetOrientation = originalLocation.getAngleTo(target);//may not work
+        double targetOrientation = originalLocation.getAngleTo(target);
 
         turnTo(targetOrientation, power); //turn toward target
         encoderDrive(power * DRIVE_SPEED, targetDistance, 10);//drive toward target
@@ -57,11 +57,10 @@ public class AutonomousDriveTrain {
 
     void turnTo(double target, double power) {
         originalOrientation = orientation;
-        int turn_direction = (target - originalOrientation > 0)? 1:-1;
-        encoderTurn(turn_direction * power * TURN_SPEED, Math.abs(target - originalOrientation), 10); //counterclockwise is neg
+        int turn_direction = (target - originalOrientation > 0)? 1:-1; //may not work
+        encoderTurn(turn_direction * power * TURN_SPEED, Math.abs(target - originalOrientation), 10);
     }
-
-
+    
     void updateLocation() {
         int avg_encoder = (Math.abs(leftEncoder.getCurrentPosition()) + Math.abs(rightEncoder.getCurrentPosition())) / 2;
         double avg_distance = avg_encoder / COUNTS_PER_INCH;
@@ -70,9 +69,9 @@ public class AutonomousDriveTrain {
     }
 
     void updateOrientation() {
-        int avg_encoder = (Math.abs(leftEncoder.getCurrentPosition()) + Math.abs(rightEncoder.getCurrentPosition()))/2;
+        int avg_encoder = (Math.abs(leftEncoder.getCurrentPosition()) + Math.abs(rightEncoder.getCurrentPosition())) / 2;
         double avg_degrees = avg_encoder / COUNTS_PER_DEGREE;
-        orientation += avg_degrees;
+        orientation = originalOrientation + avg_degrees;
     }
     
     public void encoderDrive(double power, double distance, double timeout) {//distance must be positive; goes forward distance inches
@@ -169,7 +168,7 @@ public class AutonomousDriveTrain {
         rightEncoder.setMode(DcMotor.RunMode.RUN_USING_ENCODER);*/
     }
 
-    public void encoderTurn(double power, double degrees, double timeout) { //Negative power for left turn
+    public void encoderTurn(double power, double degrees, double timeout) { //Negative power for right turn
         if (degrees < 0) {
             throw new IllegalArgumentException("Angle must be positive");
         }
@@ -221,7 +220,7 @@ public class AutonomousDriveTrain {
             drivetrain.driveBackRight.setPower(0);
         }
 
-    /*public void encoderStrafe(double power, double distance, double timeout) { //Positive for right
+    public void encoderStrafe(double power, double distance, double timeout) { //Positive for right
         if (distance < 0) {
             throw new IllegalArgumentException("Distance must be positive");
         }
@@ -254,7 +253,7 @@ public class AutonomousDriveTrain {
                 drivetrain.driveBackRight.setPower(-power * DRIVE_SPEED * (1 - .01 * (absRightEncoderPos - absLeftEncoderPos)));
                 drivetrain.driveBackLeft.setPower(-power * DRIVE_SPEED);
             } else {*/
-            /*drivetrain.driveFrontRight.setPower(-power * STRAFE_SPEED);
+            drivetrain.driveFrontRight.setPower(-power * STRAFE_SPEED);
             drivetrain.driveFrontLeft.setPower(-power * STRAFE_SPEED);
             drivetrain.driveBackRight.setPower(-power * STRAFE_SPEED);
             drivetrain.driveBackLeft.setPower(-power * STRAFE_SPEED);
@@ -274,7 +273,7 @@ public class AutonomousDriveTrain {
         drivetrain.driveBackRight.setPower(0);
     }
 
-    public LocationPoint updateLocation() {
+    /*public LocationPoint updateLocation() {
         return location;
     }
 
